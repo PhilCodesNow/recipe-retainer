@@ -1,14 +1,22 @@
 import React from 'react';
 import Recipe from './Recipe';
+import './RecipeList.css';
 
-function RecipeList( { sampleRecipes } ) {
+function RecipeList(props) {
+    const { 
+        sampleRecipes,
+        handleRecipeAdd
+    } = props
     return (
-        <div>
+        <div className="recipeList">
+        <div >
             {sampleRecipes.map(recipes =>{
                 return (
                     <Recipe key={recipes.id} {...recipes} />
                 )
             })}
+        </div>
+        <button onClick={handleRecipeAdd}>Add Recipe</button>
         </div>
     )
 }

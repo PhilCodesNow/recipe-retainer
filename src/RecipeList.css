@@ -1,0 +1,8 @@
+.recipeList button{
+    padding: .4em;
+    margin: .4em;
+    border-radius: .6em;
+}
+.recipeList button:hover{
+    cursor: pointer;
+}

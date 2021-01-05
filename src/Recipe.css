@@ -1,0 +1,15 @@
+.recipe{
+    border: 1px solid black;
+    max-width: 35vw;
+    padding: 1em;
+    font-size: 3em;
+}
+.recipe button {
+    padding: .4em;
+    font-size: 1em;
+    margin: .4em;
+    border-radius: .6em;
+}
+.recipe button:hover{
+    cursor: pointer;
+}

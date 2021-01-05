@@ -1,14 +1,17 @@
-import React from 'react'
+import React from 'react';
+import Ingredients from './Ingredients';
+import './Recipe.css';
 
 function Recipe(props) {
     const {
         name, 
         cookTime, 
         servings, 
-        instructions
+        instructions,
+        ingredients
     } = props
     return (
-        <div>
+        <div className="recipe">
             <div>
                 <h3>{name}</h3>
                 <div>
@@ -28,6 +31,12 @@ function Recipe(props) {
                 <span>Instructions:</span>
                 <div>
                     {instructions}
+                </div>
+                <div>
+                    <span>Ingredients: </span>
+                    <div>
+                        <Ingredients ingredients={ingredients}/>
+                    </div>
                 </div>
             </div>
         </div>
