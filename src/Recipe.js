@@ -4,11 +4,13 @@ import './Recipe.css';
 
 function Recipe(props) {
     const {
+        id,
         name, 
         cookTime, 
         servings, 
         instructions,
-        ingredients
+        ingredients,
+        handleRecipeDelete
     } = props
     return (
         <div className="recipe">
@@ -16,7 +18,11 @@ function Recipe(props) {
                 <h3>{name}</h3>
                 <div>
                     <button>Edit</button>
-                    <button>Delete</button>
+                    <button
+                        onClick={() => {handleRecipeDelete(id)}}
+                    >
+                    Delete
+                    </button>
                 </div>
             </div>
             <div>

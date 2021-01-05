@@ -5,14 +5,19 @@ import './RecipeList.css';
 function RecipeList(props) {
     const { 
         sampleRecipes,
-        handleRecipeAdd
+        handleRecipeAdd,
+        handleRecipeDelete
     } = props
     return (
         <div className="recipeList">
         <div >
             {sampleRecipes.map(recipes =>{
                 return (
-                    <Recipe key={recipes.id} {...recipes} />
+                    <Recipe 
+                    key={recipes.id}
+                    {...recipes}
+                    handleRecipeDelete={handleRecipeDelete}
+                    />
                 )
             })}
         </div>

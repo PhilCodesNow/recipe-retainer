@@ -25,11 +25,16 @@ function App() {
     setRecipes([...recipes, newRecipe])
   }
 
+  function handleRecipeDelete(id) {
+    setRecipes(recipes.filter(recipe => recipe.id !== id))
+  }
+
   return (
     <div className="App">
       <RecipeList 
       sampleRecipes={recipes}
       handleRecipeAdd={handleRecipeAdd}
+      handleRecipeDelete={handleRecipeDelete}
       />
     </div>
   );
