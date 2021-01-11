@@ -10,18 +10,20 @@ function Recipe(props) {
         servings, 
         instructions,
         ingredients,
-        handleRecipeDelete
+        handleRecipeDelete,
+        handleRecipeSelect
     } = props
     return (
         <div className="recipe">
             <div>
                 <h3>{name}</h3>
                 <div>
-                    <button>Edit</button>
+                    <button onClick={() => handleRecipeSelect(id)}>
+                        Edit</button>
                     <button
                         onClick={() => {handleRecipeDelete(id)}}
                     >
-                    Delete
+                        Delete
                     </button>
                 </div>
             </div>

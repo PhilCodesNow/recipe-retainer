@@ -6,7 +6,8 @@ function RecipeList(props) {
     const { 
         sampleRecipes,
         handleRecipeAdd,
-        handleRecipeDelete
+        handleRecipeDelete,
+        handleRecipeSelect
     } = props
     return (
         <div className="recipeList">
@@ -17,6 +18,7 @@ function RecipeList(props) {
                     key={recipes.id}
                     {...recipes}
                     handleRecipeDelete={handleRecipeDelete}
+                    handleRecipeSelect={handleRecipeSelect}
                     />
                 )
             })}

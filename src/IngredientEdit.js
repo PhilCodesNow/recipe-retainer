@@ -1,11 +1,14 @@
-import React from 'react'
+import React from 'react';
+import './IngredientEdit.css';
 
-export default function IngredientEdit() {
+export default function IngredientEdit( { ingredient }) {
     return (
         <>
-          <input type="text"/>
-          <input type="text"/>
-          <button>&times;</button>
+          <div className="ingredientEdit">
+            <input type="text" value={ingredient.name}/>
+            <input type="text" value={ingredient.amount}/>
+            <button>&times;</button>
+          </div>
         </>
     )
 }

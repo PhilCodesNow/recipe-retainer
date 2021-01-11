@@ -2,22 +2,22 @@ import React from 'react';
 import './RecipeEdit.css';
 import IngredientEdit from './IngredientEdit';
 
-function RecipeEdit() {
+function RecipeEdit({ recipe }) {
     return (
         <div className="recipeEdit">
             <div>&times;</div>
             <div>
             <label htmlFor="name">Name</label>
-            <input type="text" name="name" id="name"/>
+            <input type="text" name="name" value={recipe.name} id="name"/>
 
             <label htmlFor="CookTime">Cook Time</label>
-            <input type="text" name="CookTime" id="cookTime"/>
+            <input type="text" name="CookTime" id="cookTime" value={recipe.cookTime}/>
 
-            <label htmlFor="servings">Sevings</label>
-            <input type="number" name="servings" id="servings"/>
+            <label htmlFor="servings">Servings</label>
+            <input type="number" name="servings" id="servings" value={recipe.servings}/>
             
             <lable htmlFor="instructions">Instructions</lable>
-            <textarea  name="instructions" id="instructions"></textarea>
+            <textarea  name="instructions" id="instructions" value={recipe.instructions}></textarea>
 
 
             </div>
@@ -27,7 +27,12 @@ function RecipeEdit() {
                 <div>Name</div>
                 <div>Amount</div>
                 <div>
-                    <IngredientEdit/>
+                   {recipe.ingredients.map(ingredient =>(
+                       <IngredientEdit
+                            key={ingredient.id}
+                            ingredient={ingredient}
+                        />
+                   ))}
                 </div>
                 
             </div>

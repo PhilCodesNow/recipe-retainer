@@ -11,6 +11,13 @@ const LOCAL_STORAGE_KEY = 'reciperetainer.recipes'
 function App() {
 
   const [recipes, setRecipes] = useState(sampleRecipes)
+  const [selectedRecipeId, setSelectedRecipeId] = useState()
+  const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
+
+
+  function handleRecipeSelect(id){
+    setSelectedRecipeId(id)
+  }
 
   useEffect(() =>{
     const recipeJSON = localStorage.getItem(LOCAL_STORAGE_KEY)
@@ -51,10 +58,14 @@ function App() {
       sampleRecipes={recipes}
       handleRecipeAdd={handleRecipeAdd}
       handleRecipeDelete={handleRecipeDelete}
+      handleRecipeSelect={handleRecipeSelect}
       />
-      <RecipeEdit 
+      {selectedRecipe && <RecipeEdit 
       className="app__recipeEdit"
-      />
+      recipe={selectedRecipe}
+      handleRecipeSelect={handleRecipeSelect}
+      selectedRecipe={selectedRecipe}
+      />}
     </div>
   );
 }
