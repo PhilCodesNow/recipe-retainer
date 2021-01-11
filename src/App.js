@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Recipe from './Recipe';
 import RecipeList from './RecipeList';
 import { v4 as uuidv4 } from 'uuid';
+import RecipeEdit from './RecipeEdit';
 
 const LOCAL_STORAGE_KEY = 'reciperetainer.recipes'
 
@@ -44,11 +45,15 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="app">
       <RecipeList 
+      className="app__recipeList"
       sampleRecipes={recipes}
       handleRecipeAdd={handleRecipeAdd}
       handleRecipeDelete={handleRecipeDelete}
+      />
+      <RecipeEdit 
+      className="app__recipeEdit"
       />
     </div>
   );

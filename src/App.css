@@ -4,3 +4,7 @@
   background-color: black;
   color: white;
 }
+.app {
+  display: flex;
+  
+}
