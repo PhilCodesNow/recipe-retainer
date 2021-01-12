@@ -4,7 +4,8 @@ import './IngredientEdit.css';
 export default function IngredientEdit(props) {
   const {
     ingredient,
-    handleIngredientChange
+    handleIngredientChange,
+    handleIngredientDelete
   } = props
 
   function handleChange(changes) {
@@ -14,10 +15,11 @@ export default function IngredientEdit(props) {
         <>
           <div className="ingredientEdit">
             <input type="text" value={ingredient.name} 
-            onInput={(e) => handleChange({ name: e.target.value })}/>
+            onChange={(e) => handleChange({ name: e.target.value })}/>
             <input type="text" value={ingredient.amount} 
-            onInput={(e) => handleChange({ amount: e.target.value })}/>
-            <button>&times;</button>
+            onChange={(e) => handleChange({ amount: e.target.value })}/>
+            <button
+              onClick={() => handleIngredientDelete(ingredient.id)}>&times;</button>
           </div>
         </>
     )

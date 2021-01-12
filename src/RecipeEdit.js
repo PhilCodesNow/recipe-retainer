@@ -1,11 +1,13 @@
 import React from 'react';
 import './RecipeEdit.css';
 import IngredientEdit from './IngredientEdit';
+import { v4 as uuidv4 } from 'uuid';
 
 function RecipeEdit(props) {
     const {
         recipe, 
         handleRecipeChange,
+        handleRecipeSelect
     } = props
 
     function handleChange(changes) {
@@ -18,10 +20,24 @@ function RecipeEdit(props) {
         newIngredients[index] = ingredient
         handleChange({ ingredients: newIngredients })
       }
+
+      function handleIngredientAdd() {
+          const newIngredient = {
+              id: uuidv4(),
+              name: '', 
+              amount: ''
+          }
+          handleChange({ ingredients: [...recipe.ingredients, newIngredient]})
+      }
+
+      function handleIngredientDelete(id) {
+        handleChange({ ingredients: recipe.ingredients.filter(i => i.id !== id)
+        })
+      }
     
     return (
         <div className="recipeEdit">
-            <div>&times;</div>
+            <div onClick={() => handleRecipeSelect(undefined)}>&times;</div>
             <div>
             <label htmlFor="name">Name</label>
             <input type="text" name="name" value={recipe.name} id="name" onInput={e => handleChange({name: e.target.value})}/>
@@ -48,13 +64,16 @@ function RecipeEdit(props) {
                             key={ingredient.id}
                             ingredient={ingredient}
                             handleIngredientChange={handleIngredientChange}
+                            handleIngredientDelete={handleIngredientDelete}
                         />
                    ))}
                 </div>
                 
             </div>
             <div>
-                <button>Add Ingredient</button>
+                <button
+                onClick={() =>{ handleIngredientAdd()}}
+                >Add Ingredient</button>
             </div>
         </div>
     )
