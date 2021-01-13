@@ -10,7 +10,9 @@ function RecipeList(props) {
         handleRecipeSelect,
         recipeSearched
     } = props
-    if(recipeSearched === false){
+
+    let newRecipeSearched = [...recipeSearched]
+    if(recipeSearched == newRecipeSearched){
     return (
         <div className="recipeList">
         <div>

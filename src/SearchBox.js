@@ -3,8 +3,18 @@ import './SearchBox.css';
 
 function SearchBox(props) {
     const {
-        recipeSearched
+        recipeSearched,
+        setRecipeSearched
     } = props
+
+    function handleSearchInput(input){
+        if(input){
+            setRecipeSearched = true
+        } else {
+            setRecipeSearched = false;
+        }
+    }
+
     return (
         <div className="searchBox">
             <label htmlFor="selectField">Search: </label>
@@ -16,7 +26,7 @@ function SearchBox(props) {
                 <option value="Ingredients">Ingredients</option>
             </select>
             <label htmlFor="search">Search: </label>
-            <input type="text" name="search" id="search"/>
+            <input type="text" name="search" id="search" onInput={e => handleSearchInput(e.target.value)}/>
         </div>
     )
 }

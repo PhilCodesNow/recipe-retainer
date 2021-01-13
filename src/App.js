@@ -14,8 +14,9 @@ function App() {
   const [recipes, setRecipes] = useState(sampleRecipes)
   const [selectedRecipeId, setSelectedRecipeId] = useState()
   const [searchRecipes, setSearchRecipes] = useState()
+  const [recipeSearched, setRecipeSearched] = useState([false])
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
-  let recipeSearched = false
+
 
 
   function handleRecipeChange(id, recipe) {
@@ -29,7 +30,6 @@ function App() {
   function handleRecipeSelect(id){
     setSelectedRecipeId(id)
   }
-
 
 
 
@@ -72,8 +72,9 @@ function App() {
   return (
     <div className="app">
       <div className="app__search">
-        <searchBox 
+        <SearchBox 
         recipeSearched={recipeSearched}
+        setRecipeSearched={setRecipeSearched}
         />
       </div>
       <div className="app__main">
