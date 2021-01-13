@@ -4,6 +4,7 @@ import Recipe from './Recipe';
 import RecipeList from './RecipeList';
 import { v4 as uuidv4 } from 'uuid';
 import RecipeEdit from './RecipeEdit';
+import SearchBox from './SearchBox';
 
 const LOCAL_STORAGE_KEY = 'reciperetainer.recipes'
 
@@ -68,21 +69,26 @@ function App() {
 
   return (
     <div className="app">
-      <RecipeList 
-      className="app__recipeList"
-      sampleRecipes={recipes}
-      handleRecipeAdd={handleRecipeAdd}
-      handleRecipeDelete={handleRecipeDelete}
-      handleRecipeSelect={handleRecipeSelect}
-      />
-      {selectedRecipe && <RecipeEdit 
-      className="app__recipeEdit"
-      recipe={selectedRecipe}
-      handleRecipeSelect={handleRecipeSelect}
-      selectedRecipe={selectedRecipe}
-      handleRecipeChange={handleRecipeChange}
-      handleRecipeSelect={handleRecipeSelect}
-      />}
+      <div className="app__search">
+        <SearchBox/>
+      </div>
+      <div className="app__main">
+        <RecipeList 
+        className="app__recipeList"
+        sampleRecipes={recipes}
+        handleRecipeAdd={handleRecipeAdd}
+        handleRecipeDelete={handleRecipeDelete}
+        handleRecipeSelect={handleRecipeSelect}
+        />
+        {selectedRecipe && <RecipeEdit 
+        className="app__recipeEdit"
+        recipe={selectedRecipe}
+        handleRecipeSelect={handleRecipeSelect}
+        selectedRecipe={selectedRecipe}
+        handleRecipeChange={handleRecipeChange}
+        handleRecipeSelect={handleRecipeSelect}
+        />}
+      </div>
     </div>
   );
 }

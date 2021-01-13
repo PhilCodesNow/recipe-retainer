@@ -1,0 +1,15 @@
+.searchBox {
+    background-color: rgb(96, 87, 87);
+    height: 10vh;
+    width: 100%;
+    font-size: 4em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchBox input, .searchBox select{
+    height: 50%;
+}
+.searchBox input{
+    font-size: .4em;
+}
