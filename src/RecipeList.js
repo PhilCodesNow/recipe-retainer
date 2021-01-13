@@ -7,12 +7,15 @@ function RecipeList(props) {
         sampleRecipes,
         handleRecipeAdd,
         handleRecipeDelete,
-        handleRecipeSelect
+        handleRecipeSelect,
+        recipeSearched
     } = props
+    if(recipeSearched === false){
     return (
         <div className="recipeList">
-        <div >
-            {sampleRecipes.map(recipes =>{
+        <div>
+            {
+                sampleRecipes.map(recipes =>{
                 return (
                     <Recipe 
                     key={recipes.id}
@@ -21,11 +24,18 @@ function RecipeList(props) {
                     handleRecipeSelect={handleRecipeSelect}
                     />
                 )
-            })}
+            })
+    }
+        
         </div>
         <button onClick={handleRecipeAdd}>Add Recipe</button>
         </div>
     )
+} else{
+    return (
+        <div>Searched</div>
+    )
+}
 }
 
 export default RecipeList

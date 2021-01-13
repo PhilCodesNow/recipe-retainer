@@ -1,7 +1,10 @@
 import React from 'react';
 import './SearchBox.css';
 
-function SearchBox() {
+function SearchBox(props) {
+    const {
+        recipeSearched
+    } = props
     return (
         <div className="searchBox">
             <label htmlFor="selectField">Search: </label>
