@@ -9,9 +9,9 @@ function SearchBox(props) {
 
     function handleSearchInput(input){
         if(input){
-            setRecipeSearched = true
+            setRecipeSearched = [true]
         } else {
-            setRecipeSearched = false;
+            setRecipeSearched = [false]
         }
     }
 

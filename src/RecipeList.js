@@ -8,11 +8,9 @@ function RecipeList(props) {
         handleRecipeAdd,
         handleRecipeDelete,
         handleRecipeSelect,
-        recipeSearched
     } = props
 
-    let newRecipeSearched = [...recipeSearched]
-    if(recipeSearched == newRecipeSearched){
+
     return (
         <div className="recipeList">
         <div>
@@ -33,11 +31,6 @@ function RecipeList(props) {
         <button onClick={handleRecipeAdd}>Add Recipe</button>
         </div>
     )
-} else{
-    return (
-        <div>Searched</div>
-    )
-}
 }
 
 export default RecipeList

@@ -69,34 +69,38 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
-  return (
-    <div className="app">
-      <div className="app__search">
-        <SearchBox 
-        recipeSearched={recipeSearched}
-        setRecipeSearched={setRecipeSearched}
-        />
+  if(recipeSearched[0] == false){
+    return (
+      <div className="app">
+        <div className="app__search">
+          <SearchBox 
+          recipeSearched={recipeSearched}
+          setRecipeSearched={setRecipeSearched}
+          />
+        </div>
+        <div className="app__main">
+          <RecipeList 
+          className="app__recipeList"
+          sampleRecipes={recipes}
+          handleRecipeAdd={handleRecipeAdd}
+          handleRecipeDelete={handleRecipeDelete}
+          handleRecipeSelect={handleRecipeSelect}
+          recipeSearched={recipeSearched}
+          />
+          {selectedRecipe && <RecipeEdit 
+          className="app__recipeEdit"
+          recipe={selectedRecipe}
+          handleRecipeSelect={handleRecipeSelect}
+          selectedRecipe={selectedRecipe}
+          handleRecipeChange={handleRecipeChange}
+          handleRecipeSelect={handleRecipeSelect}
+          />}
+        </div>
       </div>
-      <div className="app__main">
-        <RecipeList 
-        className="app__recipeList"
-        sampleRecipes={recipes}
-        handleRecipeAdd={handleRecipeAdd}
-        handleRecipeDelete={handleRecipeDelete}
-        handleRecipeSelect={handleRecipeSelect}
-        recipeSearched={recipeSearched}
-        />
-        {selectedRecipe && <RecipeEdit 
-        className="app__recipeEdit"
-        recipe={selectedRecipe}
-        handleRecipeSelect={handleRecipeSelect}
-        selectedRecipe={selectedRecipe}
-        handleRecipeChange={handleRecipeChange}
-        handleRecipeSelect={handleRecipeSelect}
-        />}
-      </div>
-    </div>
-  );
+    );
+  } else if(recipeSearched == true){
+  return (<div>Searched</div>)
+}
 }
 
 const sampleRecipes = [
