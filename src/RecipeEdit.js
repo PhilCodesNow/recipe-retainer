@@ -49,7 +49,7 @@ function RecipeEdit(props) {
             <input type="number" name="servings" id="servings" value={recipe.servings} onInput={e => handleChange({servings: parseInt(e.target.value)})}/>
             
             <lable htmlFor="instructions">Instructions</lable>
-            <textarea  name="instructions" id="instructions" value={recipe.instructions} onInput={e => handleChange({instructinos: e.target.value || '' })}></textarea>
+            <textarea  name="instructions" id="instructions" value={recipe.instructions} onInput={e => handleChange({instructions: e.target.value || '' })}></textarea>
 
 
             </div>
