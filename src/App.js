@@ -13,8 +13,9 @@ function App() {
 
   const [recipes, setRecipes] = useState(sampleRecipes)
   const [selectedRecipeId, setSelectedRecipeId] = useState()
-  const [searchRecipes, setSearchRecipes] = useState(false)
-  const [recipeSearched, setRecipeSearched] = useState([false])
+  const [searchedRecipes, setSearchedRecipes] = useState([])
+  const [searchQuery, setSearchQuery] = useState([])
+  const [recipeSearched, setRecipeSearched] = useState(false)
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
 
@@ -33,11 +34,18 @@ function App() {
 
   function handleSearchInput(e){
     if(e.target.value != null){
+        setSearchQuery(e.target.value)
+        let recipeArray = recipes
+        let newRecipeArray
+        recipeArray.map(recipe => {
+          if(recipe.name === searchQuery){
+            newRecipeArray.push(recipe)
+          }
+        })
+        setSearchedRecipes(newRecipeArray)
         setRecipeSearched(true)
-        console.log(recipeSearched)
     } else {
         setRecipeSearched(false)
-        console.log(recipeSearched)
     }
 }
 
@@ -50,10 +58,6 @@ function App() {
   useEffect(() =>{
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
     }, [recipes])
-
-  useEffect(() =>{
-
-  }, (searchRecipes))
 
   function handleRecipeAdd() {
     const newRecipe = {
@@ -80,7 +84,7 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
-  if(recipeSearched[0] == false){
+  if(recipeSearched === false){
     return (
       <div className="app">
         <div className="app__search">
@@ -110,8 +114,37 @@ function App() {
         </div>
       </div>
     );
-  } else if(recipeSearched == true){
-  return (<div>Searched</div>)
+  } else if(recipeSearched === true){
+
+  return (
+    <div className="app">
+    <div className="app__search">
+      <SearchBox 
+      recipeSearched={recipeSearched}
+      setRecipeSearched={setRecipeSearched}
+      handleSearchInput={handleSearchInput}
+      />
+    </div>
+    <div className="app__main">
+    <RecipeList
+      className="app__recipeList"
+      sampleRecipes={searchedRecipes}
+      handleRecipeAdd={handleRecipeAdd}
+      handleRecipeDelete={handleRecipeDelete}
+      handleRecipeSelect={handleRecipeSelect}
+      recipeSearched={recipeSearched}
+      />
+      {selectedRecipe && <RecipeEdit 
+      className="app__recipeEdit"
+      recipe={selectedRecipe}
+      handleRecipeSelect={handleRecipeSelect}
+      selectedRecipe={selectedRecipe}
+      handleRecipeChange={handleRecipeChange}
+      handleRecipeSelect={handleRecipeSelect}
+      />}
+    </div>
+  </div>
+)
 }
 }
 
