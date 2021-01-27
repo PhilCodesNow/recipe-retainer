@@ -13,7 +13,7 @@ function App() {
 
   const [recipes, setRecipes] = useState(sampleRecipes)
   const [selectedRecipeId, setSelectedRecipeId] = useState()
-  const [searchRecipes, setSearchRecipes] = useState()
+  const [searchRecipes, setSearchRecipes] = useState(false)
   const [recipeSearched, setRecipeSearched] = useState([false])
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
@@ -31,6 +31,15 @@ function App() {
     setSelectedRecipeId(id)
   }
 
+  function handleSearchInput(e){
+    if(e.target.value != null){
+        setRecipeSearched(true)
+        console.log(recipeSearched)
+    } else {
+        setRecipeSearched(false)
+        console.log(recipeSearched)
+    }
+}
 
 
   useEffect(() =>{
@@ -42,7 +51,9 @@ function App() {
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
     }, [recipes])
 
+  useEffect(() =>{
 
+  }, (searchRecipes))
 
   function handleRecipeAdd() {
     const newRecipe = {
@@ -76,6 +87,7 @@ function App() {
           <SearchBox 
           recipeSearched={recipeSearched}
           setRecipeSearched={setRecipeSearched}
+          handleSearchInput={handleSearchInput}
           />
         </div>
         <div className="app__main">
