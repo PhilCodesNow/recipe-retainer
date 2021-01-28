@@ -13,8 +13,28 @@ function App() {
 
   const [recipes, setRecipes] = useState(sampleRecipes)
   const [selectedRecipeId, setSelectedRecipeId] = useState()
-  const [searchRecipes, setSearchRecipes] = useState()
-  const [recipeSearched, setRecipeSearched] = useState([false])
+  const [searchedRecipes, setSearchedRecipes] = useState([
+    {
+      id: 1, 
+      name: 'Searched Recipe',
+      servings: 3,
+      cookTime: '1:45',
+      instructions: "1. Put salt on chicken\n2. Put chicken in oven\n3. Eat Chicken",
+      ingredients: [
+        {
+          id: 1,
+          name: 'Chicken',
+          amount: '2 pounds'
+        },
+        {
+          id: 2,
+          name: 'Rosemary',
+          amount: '2 Table Spoons'
+        }
+      ]
+    }])
+  const [searchQuery, setSearchQuery] = useState(['Plain Chicken'])
+  const [recipeSearched, setRecipeSearched] = useState(false)
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
 
@@ -31,6 +51,26 @@ function App() {
     setSelectedRecipeId(id)
   }
 
+  function handleSearchInput(e){
+    if(e.target.value != null){
+        console.log(...searchQuery)
+        setSearchQuery(e.target.value)
+        let recipeArray = recipes
+        console.log(recipeArray)
+        let newRecipeArray = []
+        recipeArray.map(recipe => {
+          if(recipe.name == (searchQuery)){
+            console.log(recipe.name)
+            newRecipeArray.push(recipe)
+            console.log(newRecipeArray)
+          }
+        })
+        setSearchedRecipes([...newRecipeArray])
+        setRecipeSearched(true)
+    } else {
+        setRecipeSearched(false)
+    }
+}
 
 
   useEffect(() =>{
@@ -41,8 +81,6 @@ function App() {
   useEffect(() =>{
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(recipes))
     }, [recipes])
-
-
 
   function handleRecipeAdd() {
     const newRecipe = {
@@ -69,13 +107,14 @@ function App() {
     setRecipes(recipes.filter(recipe => recipe.id !== id))
   }
 
-  if(recipeSearched[0] == false){
+  if(recipeSearched === false){
     return (
       <div className="app">
         <div className="app__search">
           <SearchBox 
           recipeSearched={recipeSearched}
           setRecipeSearched={setRecipeSearched}
+          handleSearchInput={handleSearchInput}
           />
         </div>
         <div className="app__main">
@@ -98,8 +137,37 @@ function App() {
         </div>
       </div>
     );
-  } else if(recipeSearched == true){
-  return (<div>Searched</div>)
+  } else if(recipeSearched === true){
+
+  return (
+    <div className="app">
+    <div className="app__search">
+      <SearchBox 
+      recipeSearched={recipeSearched}
+      setRecipeSearched={setRecipeSearched}
+      handleSearchInput={handleSearchInput}
+      />
+    </div>
+    <div className="app__main">
+    <RecipeList
+      className="app__recipeList"
+      sampleRecipes={searchedRecipes}
+      handleRecipeAdd={handleRecipeAdd}
+      handleRecipeDelete={handleRecipeDelete}
+      handleRecipeSelect={handleRecipeSelect}
+      recipeSearched={recipeSearched}
+      />
+      {selectedRecipe && <RecipeEdit 
+      className="app__recipeEdit"
+      recipe={selectedRecipe}
+      handleRecipeSelect={handleRecipeSelect}
+      selectedRecipe={selectedRecipe}
+      handleRecipeChange={handleRecipeChange}
+      handleRecipeSelect={handleRecipeSelect}
+      />}
+    </div>
+  </div>
+)
 }
 }
 
