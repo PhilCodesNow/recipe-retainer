@@ -13,8 +13,27 @@ function App() {
 
   const [recipes, setRecipes] = useState(sampleRecipes)
   const [selectedRecipeId, setSelectedRecipeId] = useState()
-  const [searchedRecipes, setSearchedRecipes] = useState([])
-  const [searchQuery, setSearchQuery] = useState([])
+  const [searchedRecipes, setSearchedRecipes] = useState([
+    {
+      id: 1, 
+      name: 'Searched Recipe',
+      servings: 3,
+      cookTime: '1:45',
+      instructions: "1. Put salt on chicken\n2. Put chicken in oven\n3. Eat Chicken",
+      ingredients: [
+        {
+          id: 1,
+          name: 'Chicken',
+          amount: '2 pounds'
+        },
+        {
+          id: 2,
+          name: 'Rosemary',
+          amount: '2 Table Spoons'
+        }
+      ]
+    }])
+  const [searchQuery, setSearchQuery] = useState(['Plain Chicken'])
   const [recipeSearched, setRecipeSearched] = useState(false)
   const selectedRecipe = recipes.find(recipe => recipe.id === selectedRecipeId)
 
@@ -34,15 +53,19 @@ function App() {
 
   function handleSearchInput(e){
     if(e.target.value != null){
-        setSearchQuery(e.target.value)
+        console.log(...searchQuery)
+        // setSearchQuery(e.target.value)
         let recipeArray = recipes
-        let newRecipeArray
+        console.log(recipeArray)
+        let newRecipeArray = []
         recipeArray.map(recipe => {
-          if(recipe.name === searchQuery){
+          if(recipe.name == (searchQuery)){
+            console.log(recipe.name)
             newRecipeArray.push(recipe)
+            console.log(newRecipeArray)
           }
         })
-        setSearchedRecipes(newRecipeArray)
+        setSearchedRecipes([...newRecipeArray])
         setRecipeSearched(true)
     } else {
         setRecipeSearched(false)
