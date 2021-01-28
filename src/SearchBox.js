@@ -3,8 +3,6 @@ import './SearchBox.css';
 
 function SearchBox(props) {
     const {
-        recipeSearched,
-        setRecipeSearched,
         handleSearchInput
     } = props
 
