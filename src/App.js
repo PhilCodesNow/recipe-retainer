@@ -54,7 +54,7 @@ function App() {
   function handleSearchInput(e){
     if(e.target.value != null){
         console.log(...searchQuery)
-        // setSearchQuery(e.target.value)
+        setSearchQuery(e.target.value)
         let recipeArray = recipes
         console.log(recipeArray)
         let newRecipeArray = []
