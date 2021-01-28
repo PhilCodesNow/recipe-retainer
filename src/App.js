@@ -1,6 +1,5 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
-import Recipe from './Recipe';
 import RecipeList from './RecipeList';
 import { v4 as uuidv4 } from 'uuid';
 import RecipeEdit from './RecipeEdit';
@@ -59,7 +58,7 @@ function App() {
         console.log(recipeArray)
         let newRecipeArray = []
         recipeArray.map(recipe => {
-          if(recipe.name == (searchQuery)){
+          if(recipe.name === searchQuery){
             console.log(recipe.name)
             newRecipeArray.push(recipe)
             console.log(newRecipeArray)
