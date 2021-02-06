@@ -1,8 +1,11 @@
 .recipe{
-    border: 1px solid white;
+    background-color: blue;
     max-width: 35vw;
     padding: 1em;
     font-size: 3em;
+}
+.recipe > * {
+    background-color: blue;
 }
 .recipe button {
     padding: .4em;

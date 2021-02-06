@@ -10,16 +10,16 @@ function SearchBox(props) {
 
     return (
         <div className="searchBox">
-            <label htmlFor="selectField">Search: </label>
+            {/* <label htmlFor="search">Search: </label> */}
+            <input type="text" name="search" placeholder="search" id="search" onInput={handleSearchInput}/>
+                {/* <label htmlFor="selectField">Search: </label> */}
             <select name="selectField">
-                <option value="">Select Search Field</option>
+                <option value="none"></option>
                 <option value="name">Name</option>
-                <option value="cookTime">Cook Time</option>
+                {/* <option value="cookTime">Cook Time</option>
                 <option value="Servings">Servings</option>
-                <option value="Ingredients">Ingredients</option>
+                <option value="Ingredients">Ingredients</option> */}
             </select>
-            <label htmlFor="search">Search: </label>
-            <input type="text" name="search" id="search" onInput={handleSearchInput}/>
         </div>
     )
 }

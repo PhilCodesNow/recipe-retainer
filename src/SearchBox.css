@@ -7,9 +7,27 @@
     justify-content: center;
     align-items: center;
 }
+.searchBox > * {
+    background-color:  rgb(96, 87, 87);
+}
+.searchBox > *:focus{
+    outline: none;
+}
 .searchBox input, .searchBox select{
     height: 50%;
 }
 .searchBox input{
     font-size: .4em;
+    border-radius: 20px;
+    text-align: center;
 }
+::-webkit-input-placeholder {
+    text-align: center;
+ }
+.searchBox label {
+    font-size: .6em;
+}
+.searchBox select{
+    border: none;
+}
+
