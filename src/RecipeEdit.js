@@ -39,25 +39,35 @@ function RecipeEdit(props) {
         <div className="recipeEdit">
             <div onClick={() => handleRecipeSelect(undefined)}>&times;</div>
             <div>
+            <div className="recipeEdit__flex">
             <label htmlFor="name">Name</label>
             <input type="text" name="name" value={recipe.name} id="name" onInput={e => handleChange({name: e.target.value})}/>
+            </div>
 
+            <div className="recipeEdit__flex">
             <label htmlFor="CookTime">Cook Time</label>
             <input type="text" name="CookTime" id="cookTime" value={recipe.cookTime} onInput={e => handleChange({cookTime: e.target.value})}/>
+            </div>
 
+            <div className="recipeEdit__flex">
             <label htmlFor="servings">Servings</label>
             <input type="number" name="servings" id="servings" value={recipe.servings} onInput={e => handleChange({servings: parseInt(e.target.value)})}/>
+            </div>
             
+            <div className="recipeEdit__flex">
             <lable htmlFor="instructions">Instructions</lable>
             <textarea  name="instructions" id="instructions" value={recipe.instructions} onInput={e => handleChange({instructions: e.target.value || '' })}></textarea>
+            </div>
 
 
             </div>
             <br />
-            <label>Ingredients</label>
-            <div>
-                <div>Name</div>
-                <div>Amount</div>
+            <label className="ingredients__label">Ingredients</label>
+            <div className="recipeEdit__ingredients">
+                <div className="recipeEdit__ingredients__header">
+                    <div>Name</div>
+                    <div>Amount</div>
+                </div>
                 <div>
                    {recipe.ingredients.map(ingredient =>(
                        <IngredientEdit
@@ -70,7 +80,7 @@ function RecipeEdit(props) {
                 </div>
                 
             </div>
-            <div>
+            <div className="recipeEdit__ingredients__button">
                 <button
                 onClick={() =>{ handleIngredientAdd()}}
                 >Add Ingredient</button>

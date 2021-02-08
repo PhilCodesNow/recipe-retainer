@@ -12,15 +12,17 @@ export default function IngredientEdit(props) {
     handleIngredientChange(ingredient.id, {...ingredient, ...changes})
   }
     return (
-        <>
+      
           <div className="ingredientEdit">
             <input type="text" value={ingredient.name} 
             onChange={(e) => handleChange({ name: e.target.value })}/>
+            <div>
             <input type="text" value={ingredient.amount} 
             onChange={(e) => handleChange({ amount: e.target.value })}/>
             <button
               onClick={() => handleIngredientDelete(ingredient.id)}>&times;</button>
+            </div>
           </div>
-        </>
+
     )
 }
